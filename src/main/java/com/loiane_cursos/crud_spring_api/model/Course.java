@@ -6,10 +6,14 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 import org.hibernate.validator.constraints.Length;
 
 @Data
 @Entity  //@Table(name = "curso")
+@SQLDelete(sql = "UPDATE Course SET status = 'Inactive' WHERE id = ?")
+@Where(clause = "status = 'Active'")
 public class Course {
 
     @Id
@@ -28,6 +32,12 @@ public class Course {
     @Pattern(regexp = "Back-end|Front-end")
     @Column(length = 10, nullable = false)
     private String category;
+
+    @NotNull
+    @Length(max = 10)
+    @Pattern(regexp = "Active|Inactive")
+    @Column(length = 10, nullable = false)
+    private String status = "Active";
 
     public Long getId() {
         return id;
@@ -51,5 +61,13 @@ public class Course {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
