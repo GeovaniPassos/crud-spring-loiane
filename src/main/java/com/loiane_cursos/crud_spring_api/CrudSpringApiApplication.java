@@ -1,5 +1,6 @@
 package com.loiane_cursos.crud_spring_api;
 
+import com.loiane_cursos.crud_spring_api.enums.Category;
 import com.loiane_cursos.crud_spring_api.model.Course;
 import com.loiane_cursos.crud_spring_api.repository.CourseRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -21,11 +22,11 @@ public class CrudSpringApiApplication {
 
 			Course c = new Course();
 			c.setName("Angular com Spring");
-			c.setCategory("Front-end");
+			c.setCategory(Category.FRONT_END);
 
 			Course c1 = new Course();
 			c1.setName("Spring Boot");
-			c1.setCategory("Back-end");
+			c1.setCategory(Category.BACK_END);
 
 			courseRepository.save(c);
 			courseRepository.save(c1);

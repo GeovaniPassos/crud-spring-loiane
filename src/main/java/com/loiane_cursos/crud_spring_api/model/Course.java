@@ -1,6 +1,10 @@
 package com.loiane_cursos.crud_spring_api.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.loiane_cursos.crud_spring_api.enums.Category;
+import com.loiane_cursos.crud_spring_api.enums.Status;
+import com.loiane_cursos.crud_spring_api.enums.converters.CategoryConverter;
+import com.loiane_cursos.crud_spring_api.enums.converters.StatusConverter;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -28,16 +32,14 @@ public class Course {
     private String name;
 
     @NotNull
-    @Length(max = 10)
-    @Pattern(regexp = "Back-end|Front-end")
     @Column(length = 10, nullable = false)
-    private String category;
+    @Convert(converter = CategoryConverter.class)
+    private Category category;
 
     @NotNull
-    @Length(max = 10)
-    @Pattern(regexp = "Active|Inactive")
     @Column(length = 10, nullable = false)
-    private String status = "Active";
+    @Convert(converter = StatusConverter.class)
+    private Status status = Status.ACTIVE;
 
     public Long getId() {
         return id;
@@ -55,19 +57,19 @@ public class Course {
         this.name = name;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 }
