@@ -2,6 +2,7 @@ package com.loiane_cursos.crud_spring_api;
 
 import com.loiane_cursos.crud_spring_api.enums.Category;
 import com.loiane_cursos.crud_spring_api.model.Course;
+import com.loiane_cursos.crud_spring_api.model.Lesson;
 import com.loiane_cursos.crud_spring_api.repository.CourseRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -27,6 +28,12 @@ public class CrudSpringApiApplication {
 			Course c1 = new Course();
 			c1.setName("Spring Boot");
 			c1.setCategory(Category.BACK_END);
+
+			Lesson l = new Lesson();
+			l.setName("Introdução");
+			l.setYoutubeUrl("watch?v=Nb4uxLxdvxo");
+			l.setCourse(c);
+			c.getLessons().add(l);
 
 			courseRepository.save(c);
 			courseRepository.save(c1);
