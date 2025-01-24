@@ -1,9 +1,13 @@
 package com.loiane_cursos.crud_spring_api.dto.mapper;
 
 import com.loiane_cursos.crud_spring_api.dto.CourseDTO;
+import com.loiane_cursos.crud_spring_api.dto.LessonDTO;
 import com.loiane_cursos.crud_spring_api.enums.Category;
 import com.loiane_cursos.crud_spring_api.model.Course;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class CourseMapper {
@@ -12,10 +16,14 @@ public class CourseMapper {
         if (course == null) {
             return null;
         }
+        List<LessonDTO> lessons = course.getLessons()
+                .stream()
+                .map(lesson -> new LessonDTO(lesson.getId(), lesson.getName(), lesson.getYoutubeUrl()))
+                .toList();
         return new CourseDTO(course.getId(),
                 course.getName(),
                 course.getCategory().getValue(),
-                course.getLessons());
+                lessons);
     }
 
     public Course toEntity(CourseDTO courseDTO) {
