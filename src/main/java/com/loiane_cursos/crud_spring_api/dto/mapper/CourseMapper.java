@@ -4,6 +4,7 @@ import com.loiane_cursos.crud_spring_api.dto.CourseDTO;
 import com.loiane_cursos.crud_spring_api.dto.LessonDTO;
 import com.loiane_cursos.crud_spring_api.enums.Category;
 import com.loiane_cursos.crud_spring_api.model.Course;
+import com.loiane_cursos.crud_spring_api.model.Lesson;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -39,6 +40,20 @@ public class CourseMapper {
         course.setName(courseDTO.name());
         //TODO: use a mapper of category
         course.setCategory(convertCategoryValue(courseDTO.category()));
+
+        course.setName(courseDTO.name());
+        course.setCategory(convertCategoryValue(courseDTO.category()));
+
+        List<Lesson> lessons = courseDTO.lessons().stream().map(lessonDTO -> {
+            var lesson = new Lesson();
+            lesson.setId(lessonDTO.id());
+            lesson.setName(lessonDTO.name());
+            lesson.setYoutubeUrl(lessonDTO.youtubeUrl());
+            lesson.setCourse(course);
+            return lesson;
+        }).collect(Collectors.toList());
+        course.setLessons(lessons);
+
         return course;
 
         //Builder pattern (Como ultilizar o builder)

@@ -25,9 +25,10 @@ public class CrudSpringApiApplication {
 			c.setName("Angular com Spring");
 			c.setCategory(Category.FRONT_END);
 
+			/*
 			Course c1 = new Course();
 			c1.setName("Spring Boot");
-			c1.setCategory(Category.BACK_END);
+			c1.setCategory(Category.BACK_END);*/
 
 			Lesson l = new Lesson();
 			l.setName("Introdução");
@@ -42,7 +43,7 @@ public class CrudSpringApiApplication {
 			c.getLessons().add(l2);
 
 			courseRepository.save(c);
-			courseRepository.save(c1);
+			// courseRepository.save(c1);
 		};
 	}
 
