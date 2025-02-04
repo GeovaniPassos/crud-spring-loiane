@@ -30,15 +30,15 @@ public class CrudSpringApiApplication {
 			c1.setName("Spring Boot");
 			c1.setCategory(Category.BACK_END);*/
 
-			Lesson l = new Lesson();
-			l.setName("Introdução");
-			l.setYoutubeUrl("watch?v=Nb4uxLxdvxo");
-			l.setCourse(c);
-			c.getLessons().add(l);
+			Lesson l1 = new Lesson();
+			l1.setName("Introdução");
+			l1.setYoutubeUrl("watch?v=Nb4");
+			l1.setCourse(c);
+			c.getLessons().add(l1);
 
 			Lesson l2 = new Lesson();
-			l2.setName("Aula 1");
-			l2.setYoutubeUrl("watch?v=Nb4uxLxdvxo");
+			l2.setName("Aula 01");
+			l2.setYoutubeUrl("watch?v=Nb4");
 			l2.setCourse(c);
 			c.getLessons().add(l2);
 
