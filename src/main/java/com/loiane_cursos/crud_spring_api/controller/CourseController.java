@@ -1,11 +1,14 @@
 package com.loiane_cursos.crud_spring_api.controller;
 
 import com.loiane_cursos.crud_spring_api.dto.CourseDTO;
+import com.loiane_cursos.crud_spring_api.dto.CoursePageDTO;
 import com.loiane_cursos.crud_spring_api.model.Course;
 import com.loiane_cursos.crud_spring_api.service.CourseService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -27,9 +30,16 @@ public class CourseController {
     }
 
     @GetMapping
+    public CoursePageDTO list(@RequestParam(defaultValue = "0") @PositiveOrZero int page,
+                              @RequestParam(defaultValue = "10") @Positive @Max(100) int pageSize) {
+        return courseService.list(page, pageSize);
+    }
+
+    /*
+    @GetMapping
     public List<CourseDTO> list() {
         return courseService.list();
-    }
+    }*/
 
     @GetMapping("/{id}")
     public CourseDTO findById(@PathVariable @NotNull @Positive Long id) {
