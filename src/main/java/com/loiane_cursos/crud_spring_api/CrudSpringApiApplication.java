@@ -8,6 +8,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 
 @SpringBootApplication
 public class CrudSpringApiApplication {
@@ -17,6 +18,7 @@ public class CrudSpringApiApplication {
 	}
 
 	@Bean
+	@Profile("dev")
 	CommandLineRunner initDataBase(CourseRepository courseRepository) {
 		return args -> {
 			courseRepository.deleteAll();
@@ -26,11 +28,6 @@ public class CrudSpringApiApplication {
 				c.setName("Angular com Spring" + i);
 				c.setCategory(Category.FRONT_END);
 
-				/*
-				Course c1 = new Course();
-				c1.setName("Spring Boot");
-				c1.setCategory(Category.BACK_END);*/
-
 				Lesson l1 = new Lesson();
 				l1.setName("Introdução");
 				l1.setYoutubeUrl("watch?v=Nb4");
@@ -38,7 +35,7 @@ public class CrudSpringApiApplication {
 				c.getLessons().add(l1);
 
 				Lesson l2 = new Lesson();
-				l2.setName("Aula 01");
+				l2.setName("Aula" + i);
 				l2.setYoutubeUrl("watch?v=Nb4");
 				l2.setCourse(c);
 				c.getLessons().add(l2);
