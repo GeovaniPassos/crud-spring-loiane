@@ -25,7 +25,7 @@ public class CrudSpringApiApplication {
 
 			for(int i = 0; i < 20; i++ ) {
 				Course c = new Course();
-				c.setName("Angular com Spring" + i);
+				c.setName("Angular com Spring " + i);
 				c.setCategory(Category.FRONT_END);
 
 				Lesson l1 = new Lesson();
@@ -35,7 +35,7 @@ public class CrudSpringApiApplication {
 				c.getLessons().add(l1);
 
 				Lesson l2 = new Lesson();
-				l2.setName("Aula" + i);
+				l2.setName("Aula " + i);
 				l2.setYoutubeUrl("watch?v=Nb4");
 				l2.setCourse(c);
 				c.getLessons().add(l2);

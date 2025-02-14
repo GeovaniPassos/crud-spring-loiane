@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity  //@Table(name = "curso")
-@SQLDelete(sql = "UPDATE Course SET status = 'Inactive' WHERE id = ?")
+@SQLDelete(sql = "UPDATE course SET status = 'Inactive' WHERE id = ?")
 @Where(clause = "status = 'Active'")
 public class Course {
 
